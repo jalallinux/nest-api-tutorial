@@ -1,4 +1,5 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
@@ -11,7 +12,9 @@ export class AuthController {
   }
 
   @Post('register')
-  register() {
+  register(@Req() req: Request) {
+    console.log(req);
+    
     return this.authService.register();
   }
 }
