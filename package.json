@@ -6,6 +6,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+
+    "setup": "yarn install && yarn db:migrate && yarn db:fresh",
+    "db:migrate": "npx prisma migrate deploy",
+    "db:fresh": "npx prisma migrate reset --force",
+
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
