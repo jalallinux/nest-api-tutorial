@@ -6,6 +6,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import { ConfigService } from '@nestjs/config';
+import { Request } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -47,10 +48,14 @@ export class AuthService {
     }
   }
 
+  async me(req: Request) {
+    return req.user
+  }
+
   private responseWithToken(user: User): object {
     const token = this.jwt.sign(
       {sub: user.id, email: user.email},
-      {expiresIn: '15m', secret: this.config.get('JWT_SECRET')}
+      {expiresIn: `${this.config.get('JWT_TTL')}m`, secret: this.config.get('JWT_SECRET')}
     )
 
     delete user.password
