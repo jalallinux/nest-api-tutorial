@@ -56,7 +56,7 @@ export class AuthService {
     delete user.password
     return {
       data: {
-        ...user, token
+        ...user, access_token: token
       }
     }
   }
