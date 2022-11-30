@@ -6,7 +6,6 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import { ConfigService } from '@nestjs/config';
-import { Request } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -46,11 +45,6 @@ export class AuthService {
         }
         throw error
     }
-  }
-
-  async me(user: User) {
-    delete user.password
-    return user
   }
 
   private responseWithToken(user: User): object {
