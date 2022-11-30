@@ -48,8 +48,9 @@ export class AuthService {
     }
   }
 
-  async me(req: Request) {
-    return req.user
+  async me(user: User) {
+    delete user.password
+    return user
   }
 
   private responseWithToken(user: User): object {
