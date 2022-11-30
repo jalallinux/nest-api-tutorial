@@ -6,11 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-
     "setup": "yarn install && yarn db:migrate && yarn db:fresh",
     "db:migrate": "npx prisma migrate deploy",
     "db:fresh": "npx prisma migrate reset --force",
-
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -27,6 +25,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@prisma/client": "^4.7.0",
