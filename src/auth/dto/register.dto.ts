@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsNotEmpty, Min } from "class-validator";
+import { IsString, IsEmail, IsNotEmpty, Min, Length, MinLength } from "class-validator";
 
 
 export class AuthRegisterDto {
@@ -17,6 +17,6 @@ export class AuthRegisterDto {
 
     @IsString()
     @IsNotEmpty()
-    @Min(6)
+    @MinLength(6)
     password: string;
 }

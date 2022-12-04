@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { PrismaClient } from '@prisma/client';
+import { prisma, PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
@@ -12,5 +12,12 @@ export class PrismaService extends PrismaClient {
                 }
             }
         })
+    }
+
+    cleanDB() {
+        return this.$transaction([
+            this.user.deleteMany(),
+            this.bookmark.deleteMany()
+        ])
     }
 }
